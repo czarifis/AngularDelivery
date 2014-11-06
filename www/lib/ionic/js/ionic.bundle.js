@@ -9025,7 +9025,7 @@ function angularInit(element, bootstrap) {
  * </table>
  * </div>
  * </file>
- * <file name="controller.js">
+ * <file name="controllers.js">
  * var app = angular.module('multi-bootstrap', [])
  *
  * .controller('BrokenTable', function($scope) {
