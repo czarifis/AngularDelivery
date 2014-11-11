@@ -82,10 +82,10 @@ angular.module('controllers',[]).controller('controllers', function ($scope) {
         for(var marki=0;marki<$scope.deliver_trucks.length*PERCENTAGE;marki++){
             console.log('modifying markers here');
 //            console.log('about to get modified:',$scope.randomMarkersAboutToChange[marki]);
-            console.log('before $scope.deliver_trucks[marki].coords.latitude:',$scope.deliver_trucks[marki].coords.latitude);
+//            console.log('before $scope.deliver_trucks[marki].coords.latitude:',$scope.deliver_trucks[marki].coords.latitude);
             $scope.deliver_trucks[marki].coords.latitude = $scope.deliver_trucks[marki].coords.latitude+5;
             $scope.deliver_trucks[marki].coords.longitude = $scope.deliver_trucks[marki].coords.longitude+5;
-            console.log('after $scope.deliver_trucks[marki].coords.latitude:',$scope.deliver_trucks[marki].coords.latitude);
+//            console.log('after $scope.deliver_trucks[marki].coords.latitude:',$scope.deliver_trucks[marki].coords.latitude);
 
         }
     };
