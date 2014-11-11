@@ -6,6 +6,10 @@ angular.module('controllers',[]).controller('controllers', function ($scope) {
 
     var TRUCKS_NO = 100;
     var DELIVERIES_NO = 40;
+    var PERCENTAGE = 0.25;
+
+
+
 
 
     // map attributes
@@ -70,7 +74,21 @@ angular.module('controllers',[]).controller('controllers', function ($scope) {
 
     },true);
 
+    /**
+     * This function will modify the position of a percentage of the delivery trucks
+     */
+    $scope.modifyMarkers = function(){
 
+        for(var marki=0;marki<$scope.deliver_trucks.length*PERCENTAGE;marki++){
+            console.log('modifying markers here');
+//            console.log('about to get modified:',$scope.randomMarkersAboutToChange[marki]);
+            console.log('before $scope.deliver_trucks[marki].coords.latitude:',$scope.deliver_trucks[marki].coords.latitude);
+            $scope.deliver_trucks[marki].coords.latitude = $scope.deliver_trucks[marki].coords.latitude+5;
+            $scope.deliver_trucks[marki].coords.longitude = $scope.deliver_trucks[marki].coords.longitude+5;
+            console.log('after $scope.deliver_trucks[marki].coords.latitude:',$scope.deliver_trucks[marki].coords.latitude);
+
+        }
+    };
 
 
 

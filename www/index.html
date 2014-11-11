@@ -54,6 +54,9 @@
                           <ion-checkbox ng-model="range.checked" ng-checked="range.checked"> {{range.min}}-{{range.max}}
                           </ion-checkbox>
                       </ion-item>
+                      <button class="button" ng-click="modifyMarkers()">
+                          Modify markers
+                      </button>
 
 
 
@@ -75,7 +78,7 @@
               <div id="two">
 
           <ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds">
-              <ui-gmap-marker ng-repeat="truck in deliver_trucks| filter:{visible:true}" idKey="truck.truck_key" coords="truck.coords">
+              <ui-gmap-marker ng-repeat="truck in deliver_trucks | filter:{visible:true}" idKey="truck.truck_key" coords="truck.coords">
               </ui-gmap-marker>
           </ui-gmap-google-map>
               </div>
@@ -86,6 +89,7 @@
 
                   <div class="row">
                       <div class="col">Truck ID</div>
+                      <div class="col">Coords</div>
                       <div class="col">Delivery ID</div>
                       <div class="col">Scheduled Time</div>
                       <div class="col">Delivered Time</div>
@@ -97,6 +101,7 @@
                       <div class="item item-text-wrap" ng-repeat=" delivery in truck.all_deliveries" >
                           <div class="row">
                               <div class="col">{{truck.truck_key}}</div>
+                              <div class="col">{{truck.coords.latitude}}-{{truck.coords.longitude}}</div>
                               <div class="col">{{delivery.delivery_id}}</div>
                               <div class="col">{{delivery.scheduled_time}}</div>
                               <div class="col">{{delivery.delivered_time}}</div>
