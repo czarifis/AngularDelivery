@@ -6,7 +6,7 @@ angular.module('controllers',[]).controller('controllers', function ($scope) {
 
     var TRUCKS_NO = 100;
     var DELIVERIES_NO = 40;
-    var PERCENTAGE = 0.25;
+    var PERCENTAGE = 1;
 
 
 
