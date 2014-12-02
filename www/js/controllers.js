@@ -6,7 +6,8 @@ angular.module('controllers',[]).controller('controllers', function ($scope) {
 
     var TRUCKS_NO = 100;
     var DELIVERIES_NO = 40;
-    var PERCENTAGE = 1;
+//    var PERCENTAGE = 1;
+    var ABOUT_TO_GET_MODIFIED = 25;
 
 
 
@@ -79,8 +80,9 @@ angular.module('controllers',[]).controller('controllers', function ($scope) {
      */
     $scope.modifyMarkers = function(){
 
-        for(var marki=0;marki<$scope.deliver_trucks.length*PERCENTAGE;marki++){
-            console.log('modifying markers here');
+//        for(var marki=0;marki<$scope.deliver_trucks.length*PERCENTAGE;marki++){
+        for(var marki=0;marki<ABOUT_TO_GET_MODIFIED;marki++){
+//            console.log('modifying markers here');
 //            console.log('about to get modified:',$scope.randomMarkersAboutToChange[marki]);
 //            console.log('before $scope.deliver_trucks[marki].coords.latitude:',$scope.deliver_trucks[marki].coords.latitude);
             $scope.deliver_trucks[marki].coords.latitude = $scope.deliver_trucks[marki].coords.latitude+5;
