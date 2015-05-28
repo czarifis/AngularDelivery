@@ -43,22 +43,7 @@
     </ion-header-bar>
     <ion-content>
         <section>
-            <div id="one">
-                <ion-list>
-                    <ion-item>
-                        <div class="item item-divider">
-                            Delivery range
-                        </div>
-                    </ion-item>
-                    <ion-item ng-repeat='range in ranges'>
-                        <ion-checkbox ng-model="range.checked" ng-checked="range.checked"> {{range.min}}-{{range.max}}
-                        </ion-checkbox>
-                    </ion-item>
-                    <button class="button" ng-click="modifyMarkers()">
-                        Modify markers
-                    </button>
-                </ion-list>
-            </div>
+
 
             <div id="two">
 

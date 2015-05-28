@@ -2,7 +2,7 @@
 /**
  * Created by Costas Zarifis on 11/6/14.
  */
-angular.module('controllers', []).controller('controllers', function ($scope) {
+angular.module('controllers', []).controller('controllers', function ($scope, $http) {
 
     var TRUCKS_NO = 100;
     var DELIVERIES_NO = 40;
@@ -82,82 +82,12 @@ angular.module('controllers', []).controller('controllers', function ($scope) {
     $scope.deliver_trucks = [];
 
 
-    /**
-     * This function generates a delivery.
-     *
-     * @param j - The id of the generated delivery.
-     * @returns {{delivery_id: *, recipient: string, scheduled_time: string, delivered_time: string, item_title: string, item_description: string}}
-     */
-    var createDeliveries = function (j) {
-
-        var ret = {
-            delivery_id: j,
-            recipient: 'The White House',
-            scheduled_time: '14:19',
-            delivered_time: '14:19',
-            item_title: 'item title' + j,
-            item_description: 'blahBlahBlah'
-        };
-        return ret;
-    };
-
-    /**
-     * This function generates a truck.
-     * @param i - The key of the truck
-     * @returns {{truck_key: *, coords: {latitude: number, longitude: number}, all_deliveries: Array, pending_deliveries: (Array.length|*), visible: boolean}}
-     */
-    var createRandomTruck = function (i) {
-        var lat_min = -90,
-            lat_range = 90 - lat_min,
-            lng_min = -180,
-            lng_range = 180 - lng_min;
-
-        var truck_key = "id";
-        // a truck has deliveries
-        var deliveries = [];
-        for (var k = 0; k < DELIVERIES_NO; k++) {
-            var del = createDeliveries(k);
-            deliveries.push(del);
-        }
-
-        // The current location of the truck
-        var latitude = lat_min + (Math.random() * lat_range);
-        var longitude = lng_min + (Math.random() * lng_range);
-
-        // The truck object
-        var ret = {
-            truck_key: i,
-            coords: {
-                latitude: latitude,
-                longitude: longitude
-            },
-            all_deliveries: deliveries,
-            pending_deliveries: deliveries.length,
-            visible: true
 
 
-        };
-        ret[truck_key] = i;
-        return ret;
-    };
+    $http.jsonp('http://zarifis1.ucsd.edu:3000/delivery_trucks?callback=JSON_CALLBACK').
+        success(function(data) {
+            $scope.deliver_trucks = data;
+        });
 
-    /**
-     * This watcher is used to bootstrap the application. It executes on init to generate the trucks.
-     */
 
-    $scope.$watch(function () {
-        return $scope.map;
-    }, function (nv, ov) {
-
-        if (ov === nv) {
-            var trucks = [];
-            for (var i = 0; i < TRUCKS_NO; i++) {
-
-                $scope.mm = createRandomTruck(i);
-                trucks.push($scope.mm);
-
-            }
-            $scope.deliver_trucks = trucks;
-        }
-    }, true);
 });
