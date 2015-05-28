@@ -13,5 +13,15 @@ angular.module('controllers', []).controller('controllers', function ($scope, $h
             $scope.deliver_trucks = data;
     });
 
+    $scope.filter_var =  true;
+
+
+    $scope.choices =
+        [
+            true,
+            false
+
+        ];
+
 
 });
