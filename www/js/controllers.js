@@ -4,8 +4,8 @@
  */
 angular.module('controllers', []).controller('controllers', function ($scope) {
 
-    var TRUCKS_NO = 100;
-    var DELIVERIES_NO = 40;
+    var TRUCKS_NO = 10;
+    var DELIVERIES_NO = 4;
     var PERCENTAGE = 1;
 
     // map attributes
@@ -37,19 +37,23 @@ angular.module('controllers', []).controller('controllers', function ($scope) {
         }
     ];
 
-    // When the user clicks on a check box this watcher will get executed
-    // and it will filter out the delivery trucks
+    //When the user clicks on a check box this watcher will get executed
+    //and it will filter out the delivery trucks
     $scope.$watch('ranges', function (nv, ov) {
         if (ov !== nv) {
+            console.log($scope.ranges);
             var range_list_max = [];
             var range_list_min = [];
             for (var k = 0; k < nv.length; k++) {
+                console.log('hello');
                 if ($scope.ranges[k].checked) {
                     range_list_max.push($scope.ranges[k].max);
                     range_list_min.push($scope.ranges[k].min);
                 }
             }
-
+            console.log(JSON.stringify($scope.ranges));
+            console.log(Math.min.apply(null, range_list_min), range_list_min);
+            console.log( Math.max.apply(null, range_list_max), range_list_max);
             for (k = 0; k < $scope.deliver_trucks.length; k++) {
                 if (($scope.deliver_trucks[k].pending_deliveries < Math.min.apply(null, range_list_min)) ||
                     ($scope.deliver_trucks[k].pending_deliveries > Math.max.apply(null, range_list_max)))
@@ -59,6 +63,30 @@ angular.module('controllers', []).controller('controllers', function ($scope) {
             }
         }
     }, true);
+
+    $scope.toggleSync = function (ranges) {
+
+        //console.log(ranges);
+        //var range_list_max = [];
+        //var range_list_min = [];
+        //for (var k = 0; k < ranges[k].length; k++) {
+        //    console.log('hello');
+        //    if (ranges[k].checked) {
+        //        range_list_max.push(ranges[k].max);
+        //        range_list_min.push(ranges[k].min);
+        //    }
+        //}
+        //console.log(JSON.stringify(ranges));
+        //console.log(Math.min.apply(null, range_list_min), JSON.stringify(range_list_min));
+        //console.log( Math.max.apply(null, range_list_max), JSON.stringify(range_list_max));
+        //for (k = 0; k < $scope.deliver_trucks.length; k++) {
+        //    if (($scope.deliver_trucks[k].pending_deliveries < Math.min.apply(null, range_list_min)) ||
+        //        ($scope.deliver_trucks[k].pending_deliveries > Math.max.apply(null, range_list_max)))
+        //        $scope.deliver_trucks[k].visible = false;
+        //    else
+        //        $scope.deliver_trucks[k].visible = true;
+        //}
+    };
 
     /**
      * This function will modify the position of a percentage of the delivery trucks
@@ -76,6 +104,21 @@ angular.module('controllers', []).controller('controllers', function ($scope) {
         }
     };
 
+
+
+
+        $scope.engineer = {
+            name: "Dani",
+            currentActivity: "Fixing bugs"
+        };
+
+        $scope.activities =
+            [
+                "Writing code",
+                "Testing code",
+                "Fixing bugs",
+                "Dancing"
+            ];
 
     // array with delivery trucks, each truck has a collection
     // of items that will soon be delivered
@@ -100,6 +143,7 @@ angular.module('controllers', []).controller('controllers', function ($scope) {
         };
         return ret;
     };
+
 
     /**
      * This function generates a truck.
@@ -141,23 +185,15 @@ angular.module('controllers', []).controller('controllers', function ($scope) {
         return ret;
     };
 
-    /**
-     * This watcher is used to bootstrap the application. It executes on init to generate the trucks.
-     */
+    var trucks = [];
+    for (var i = 0; i < TRUCKS_NO; i++) {
 
-    $scope.$watch(function () {
-        return $scope.map;
-    }, function (nv, ov) {
+        $scope.mm = createRandomTruck(i);
+        trucks.push($scope.mm);
 
-        if (ov === nv) {
-            var trucks = [];
-            for (var i = 0; i < TRUCKS_NO; i++) {
+    }
+    $scope.deliver_trucks = trucks;
 
-                $scope.mm = createRandomTruck(i);
-                trucks.push($scope.mm);
 
-            }
-            $scope.deliver_trucks = trucks;
-        }
-    }, true);
+
 });
