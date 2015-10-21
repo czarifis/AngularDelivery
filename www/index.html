@@ -70,32 +70,7 @@
             </div>
 
 
-            <ion-scroll direction="xy" style="width: 100%; height: 500px">
-                <div class="item item-divider">
 
-                    <div class="row">
-                        <div class="col">Truck ID</div>
-                        <div class="col">Coords</div>
-                        <div class="col">Delivery ID</div>
-                        <div class="col">Scheduled Time</div>
-                        <div class="col">Delivered Time</div>
-                        <div class="col">Item Title</div>
-                    </div>
-                </div>
-                <ion-item ng-repeat=" truck in deliver_trucks | filter:{visible:true}">
-
-                    <div class="item item-text-wrap" ng-repeat=" delivery in truck.all_deliveries">
-                        <div class="row">
-                            <div class="col">{{truck.truck_key}}</div>
-                            <div class="col">{{truck.coords.latitude}}-{{truck.coords.longitude}}</div>
-                            <div class="col">{{delivery.delivery_id}}</div>
-                            <div class="col">{{delivery.scheduled_time}}</div>
-                            <div class="col">{{delivery.delivered_time}}</div>
-                            <div class="col">{{delivery.item_title}}</div>
-                        </div>
-                    </div>
-                </ion-item>
-            </ion-scroll>
         </section>
 
     </ion-content>
